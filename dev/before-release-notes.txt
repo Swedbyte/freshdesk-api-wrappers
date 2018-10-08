@@ -1,0 +1,68 @@
+Export Editions generate script:
+npm export-editions
+Change version in introduction-comments.js before export
+delete previous versions from '/export-editions' if needed
+
+Change import dev/simple-test-index.js
+
+If public example projects needs to be update, turn on isTestExampleLibrariesUpdate variable in /editions-export-script.js
+Update imports in example projects manually, test afterwards.
+
+-------------------------
+
+Freshdesk serverless exports modules by 'exports = object;' not 'module.exports'. It cause error otherwise. So serverless and node versions will be different in this detail too.
+Freshdesk serverless app imports all modules (regardless of the nesting level) from '/server' root path, so inner modules should be imported from the root.
+
+Bundle structure:
+
+1. Introduction: introduction-comments.js
+
+2. Basic file: freshdesk-api-library-v1.2.js
+-- starts from string 0
+-- end at string "    makeRequest(method, url, headers, body) {"
+
+3. Edition related method goes here.
+
+4. Finishing appendix:
+"    }
+  }
+
+  return freshdeskApiKit;
+})();
+
+"
+
+
+Editions bundle differences:
+
+* freshdesk-backend-app
+1. Add Intro
+2. Includes Method /requests-drivers/backend-freshdesk-request.js
+3. Appends module export
+exports = freshdeskApiKit;
+
+
+* freshdesk-frontend-app
+1. Add Intro
+2. Includes Method /requests-drivers/frontend-freshdesk-request.js
+
+
+* native-backend-app
+1. Add Intro
+2. Includes Axios dependency at string 0
+const axios = require("axios").default;
+3. Includes Method /requests-drivers/backend-axios.js
+4. Appends module export
+module.exports = freshdeskApiKit;
+
+
+* native-frontend-app
+1. Add Intro
+2. Includes Method /requests-drivers/frontend-xmlhttprequest.js
+
+
+** driver include pattern
+Remove string 'function makeRequest(method, url, headers, body) {'
+Method padding-left 6-spaces, two it already has, so it would be 4
+Remove all after last '}'
+Comments we can keep.

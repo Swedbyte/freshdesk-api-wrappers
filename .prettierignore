@@ -1,0 +1,13 @@
+.fdk/
+.idea/
+.git/
+coverage/
+dist/
+build/
+package-lock.json
+node_modules/
+server/node_modules
+.report.json
+npm-debug.log
+README.md
+*.min.js

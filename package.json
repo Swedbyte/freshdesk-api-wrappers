@@ -1,0 +1,21 @@
+{
+  "name": "freshdesk-api-wrappers",
+  "version": "1.4.2",
+  "main": "dist/",
+  "scripts": {
+    "export-editions": "node editions-export-script.js"
+  },
+  "author": "Swedbyte",
+  "license": "ISC",
+  "description": "The library contains an API wrappers that are ready to work with Freshdesk platform from different environments",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine-core": "3.2.1",
+    "karma": "3.0.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-cli": "1.0.1",
+    "karma-jasmine": "1.1.2",
+    "prettier": "1.14.2",
+    "uglify-es": "3.3.9"
+  }
+}

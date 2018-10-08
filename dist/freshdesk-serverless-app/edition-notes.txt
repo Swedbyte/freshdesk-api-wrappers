@@ -1,0 +1,45 @@
+Freshdesk API wrappers library for Freshdesk serverless platform application.
+To learn more about platform check out https://developers.freshdesk.com/v2/docs/your-first-serverless-app/
+
+This edition uses Freshdesk's backend (serverless) '$request' method to make requests to API and plugins as node.js module (preferable name freshdeskApiKit).
+It also uses 'base64' module dependency to encode input Api Key, since non btoa nor Buffer methods are not available at Freshdesk's backend (serverless) platform.
+If you need freshdesk web-platform, node.js, or native browser version of this lib check out other editions.
+
+Installation:
+
+0. Declare 'base64' module as external dependency at manifest.json in the root of serverless app.
+{
+  "platform-version": "2.0",
+  "product": {
+    "freshdesk": {}
+  },
+  "whitelisted-domains": [
+    "https://*.freshdesk.com"
+  ],
+  "dependencies": {
+    "base-64": "0.1.0"
+  }
+}
+
+1. Plug-in freshdesk-api-wrappers-lib-vX.X.js file to the /server/server.js main file (or to the some further included module) of serverless app as node.js module.
+const freshdeskApiKit = require("./lib/freshdesk-api-wrappers");
+
+*NOTE: all modules exports in Freshdesk serverless platform as 'exports = object' not 'module.exports = object',
+and all import paths starts from '/server' root path regardless of the module nesting level, so inner imported modules should have path from the root of serverless app.
+
+2. Inside some event-handler method initiate freshdeskApi as new instance of module freshdeskApiKit('my.domain.name', 'apiKey', logging = bool)
+
+    const freshdeskApi = new freshdeskApiKit(
+      inputDomainName,
+      base64.encode(`${inputApiKey}:X`),
+      true // console on
+    );
+
+3. All wrappers now accessible as promised-based methods of freshdeskApi
+
+    freshdeskApi.getTicket(2333).then(data => {
+      console.log(`Received data: `, data);
+    });
+
+
+* Check out working examples of the Freshdesk App with API wrappers lib at /env-templates/

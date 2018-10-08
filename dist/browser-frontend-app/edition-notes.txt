@@ -1,0 +1,22 @@
+Freshdesk API wrappers library for native browser application.
+To learn more about Freshdesk check out https://developers.freshdesk.com/v2/docs/quick-start/
+
+This edition uses 'XMLHttpRequest' method to make requests to API and plugins to the web-page as class freshdeskApiKit at global scope.
+If you need freshdesk web-platform, freshdesk serverless, or node.js version of this lib check out other editions.
+
+Installation:
+
+1. Plug-in freshdesk-api-wrappers.js file (or minified version) to the web-page, e.g. '<script src="freshdesk-api-wrappers.js"></script>'
+
+3. Then initiate freshdeskApi lib as new instance of global-scoped class freshdeskApiKit('my.domain.name', 'apiKey', logging = bool)
+
+    const freshdeskApi = new freshdeskApiKit(inputDomainName, btoa(`${inputApiKey}:X`), true);
+
+4. All wrappers now accessible as promised-based methods of freshdeskApi
+
+    freshdeskApi.getTicket(2333).then(data => {
+            console.log(`getTicket received data: `, data);
+    });
+
+
+* Check out working examples of the Freshdesk App with API wrappers lib at /env-templates/

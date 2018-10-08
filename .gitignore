@@ -1,0 +1,7 @@
+.idea
+access
+**/test-access
+**/node_modules
+**/coverage
+**.report.json
+**/.fdk
