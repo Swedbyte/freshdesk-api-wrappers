@@ -1,7 +1,7 @@
 /**
  * @version
  *
- * All methods returns promised result and should be handled with .then(onFulfilled, onRejected)
+ * All methods return promised result and should be handled with .then(onFulfilled, onRejected)
  * @return {Promise} -- (response) =>
  * {
  * status: Int,
