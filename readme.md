@@ -74,7 +74,7 @@ It will set a global variable 'freshdeskApiKit' so you can initiate a new instan
 Further work will be quite the same for frontend and backend:
 
 ```javascript
-const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
+const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey, true); // 3rd param turning logs on
 // Input parameters examples 'my.domain.name', 'xb7w45heXry'
 
 freshdeskApi.getTicket(1).then(result => {
