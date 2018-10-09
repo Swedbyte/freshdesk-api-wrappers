@@ -17,7 +17,10 @@ Freshdesk application can be build in different environments.
 One of the main goal of this library is to provide methods for consistent interface across frontend and backend.
 
 ```javascript
-const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
+const freshdeskApi = new freshdeskApiKit(
+  inputDomainName, // my.domain.name
+  inputApiKey // xb7w45heXry
+  );
 
 // consistent interface across frontend and backend environments
 freshdeskApi.getTicket(1).then(result => {
@@ -72,7 +75,7 @@ Further work will be quite the same for frontend and backend:
 
 ```javascript
 const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
-// Input parameters examples 'my.domain.name', 'xb7w45heyry'
+// Input parameters examples 'my.domain.name', 'xb7w45heXry'
 
 freshdeskApi.getTicket(1).then(result => {
   console.log(`result.response `, result.response);
