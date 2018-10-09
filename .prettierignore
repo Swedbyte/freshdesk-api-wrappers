@@ -11,3 +11,4 @@ server/node_modules
 npm-debug.log
 README.md
 *.min.js
+api-encode-drivers

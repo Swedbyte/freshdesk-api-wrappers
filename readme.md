@@ -17,7 +17,7 @@ Freshdesk application can be build in different environments.
 One of the main goal of this library is to provide methods for consistent interface across frontend and backend.
 
 ```javascript
-const freshdeskApi = new freshdeskApiKit(inputDomainName, encodedKey);
+const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
 
 // consistent interface across frontend and backend environments
 freshdeskApi.getTicket(1).then(result => {
@@ -39,7 +39,7 @@ As a quick start it might be effective to begin with 'env-templates' folder, whi
 
 ## Installation
 The process of installation will be different for each environment.  
-Despite the fact that library is basically the same for all platforms, it has a slightly different editions for different platforms.  
+Despite the fact that library is basically the same for all platforms, it has a slightly different editions.  
 The differences are:
 * the way to include library
 * http requests method
@@ -69,24 +69,24 @@ It will set a global variable 'freshdeskApiKit' so you can initiate a new instan
 ```
 &nbsp;
 
-Further work will be quite the same for frontend and backend except 'API key' encoding method:
+Further work will be quite the same for frontend and backend:
 
 ```javascript
-const freshdeskApi = new freshdeskApiKit(inputDomainName, encodedKey);
-// 'encodedKey' should be provided as already base-64-encoded API key
+const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
 
-// Depend on the environment it will look like this
-const encodedKey = Buffer.from(`${access.inputApiKey}:X`).toString("base64"); // Node
-const encodedKey = base64.encode(`${inputApiKey}:X`); // Serverless Freshdesk App (base64 module required)
-const encodedKey = btoa(`${inputApiKey}:X`); // Browser
+freshdeskApi.getTicket(1).then(result => {
+  console.log(`result.response `, result.response);
+});
 ```
-&nbsp;
+_Please, be aware that node.js/serverless editions have dependencies that should be installed/included in manifest.json file.
+The details described in corresponding 'edition-notes.txt'_
 
 ## Methods Listing
-The list of methods are meant to be updated.
+The list of methods is meant to be updated.
 
 _Freshdesk API is quite dynamically evolving and a lot of new customizing features could appear in API endpoints documentation.
 Feel free to pull request with working methods updates._
+&nbsp;
 
 ```javascript
 // All methods returns promised result and should be handled with .then(onFulfilled, onRejected)
@@ -124,7 +124,7 @@ Please, feel free to look into library methods to check out the JSDoc informatio
     response: JSON Object
 }
 
-// Please, be aware that in case of successful DELETE, the 'response' field will be empty string ''
+// Please, be aware that in case of successful DELETE the 'response' field will be empty string ''
 // which is NOT A VALID JSON object, and will throw error in JSON.parse(response) method.
 
 ```

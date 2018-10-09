@@ -11,6 +11,7 @@ const isTestExampleLibrariesUpdate = true; // Update test-examples libraries?
 
 const outputPath = "/dist/"; // from project root, both slashes
 const importDriverPath = "/dev/requests-drivers/"; // from project root, both slashes
+const importApiEncodeDriverPath = "/dev/api-encode-drivers/"; // from project root, both slashes
 const inputLibraryCommentsPath = "/dev/introduction-comments.js"; // from project root, lead slash
 const envTemplateFolder = "/env-templates/";
 const driverMethodStartPattern = "function makeRequest(method, url, headers, body) {"; // end patter will be last '}' symbol
@@ -26,7 +27,7 @@ const editions = {
   },
 
   "freshdesk-serverless-app": {
-    dependency: "",
+    dependency: 'const base64 = require("base-64");',
     driver: "freshdesk-serverless-request.js",
     exports: "exports = freshdeskApiKit;",
     minify: false,
@@ -74,6 +75,7 @@ for (let editionName in editions) {
     editionObj.content = edition.dependency + "\r\n\r\n" + editionObj.content;
   }
 
+  // http request method (driver)
   let editionDriver = read(importDriverPath + edition.driver);
 
   editionDriver = editionDriver
@@ -85,6 +87,11 @@ for (let editionName in editions) {
 
   editionObj.content = editionObj.content.replace(driverMethodReplacePattern, editionDriver);
 
+  // api encode method
+  let apiEncodeDriver = read(importApiEncodeDriverPath + edition.driver);
+  editionObj.content = editionObj.content.replace("`Basic ${apiKey}`", apiEncodeDriver);
+
+  // Export line
   if (edition.exports) {
     editionObj.content = editionObj.content + "\r\n" + edition.exports;
   }
@@ -92,6 +99,7 @@ for (let editionName in editions) {
   exportObj.push(editionObj);
 }
 
+// Export Output
 exportObj.forEach(editionObj => {
   //
   // Main output

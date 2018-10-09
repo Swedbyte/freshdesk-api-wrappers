@@ -5,17 +5,17 @@ const freshdeskApiKit = (function() {
   class freshdeskApiKit {
     /**
      * @param domainName -- my.domain.name
-     * @param encodedApiKey -- x56g3vwyen6er
+     * @param apiKey -- x56g3vwyen6er
      * @param logging -- public logs on/off
      */
-    constructor(domainName, encodedApiKey, logging = false) {
+    constructor(domainName, apiKey, logging = false) {
       this.domainName = domainName;
       this.url = `https://${domainName}/api/v2/`;
       this.logging = logging;
 
       setPrivate.call(_access, this, {
         headers: {
-          Authorization: `Basic ${encodedApiKey}`,
+          Authorization: `Basic ${apiKey}`,
           "Content-Type": "application/json"
         }
       });

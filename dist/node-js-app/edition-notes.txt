@@ -2,6 +2,8 @@ Freshdesk API wrappers library for Node.js environment.
 To learn more about Freshdesk check out https://developers.freshdesk.com/v2/docs/quick-start/
 
 This edition uses 'Axios' and 'base64' libraries methods to make requests to API and plugins as node.js module (preferable name freshdeskApiKit).
+Please be sure to install this modules. They are described in 'package.json' as 'dependencies' so you can run 'npm install' in that directory.
+
 If you need freshdesk web-platform, freshdesk serverless, or native browser version of this lib check out other editions.
 
 Installation:
@@ -14,7 +16,7 @@ Installation:
 
     const freshdeskApi = new freshdeskApiKit(
       inputDomainName,
-      base64.encode(`${inputApiKey}:X`),
+      inputApiKey,
       true // console on
     );
 

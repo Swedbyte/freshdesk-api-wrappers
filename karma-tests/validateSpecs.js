@@ -1,6 +1,6 @@
 // swedbyte.freshdesk.com temp test with credits in ./production-tests-access.js
 
-const freshdeskApi = new freshdeskApiKit(inputDomainName, encodedKey, true);
+const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey, true);
 
 describe("Freshdesk API suit", function() {
   describe("getTicket", function() {

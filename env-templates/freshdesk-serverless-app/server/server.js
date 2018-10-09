@@ -3,7 +3,6 @@
 
 const freshdeskApiWrapper = require("./lib/freshdesk-api-wrappers");
 const access = require("./test-access/production-tests-access-module");
-const base64 = require("base-64");
 
 exports = {
   events: [{ event: "onTicketCreate", callback: "onTicketCreateHandler" }],
@@ -13,9 +12,10 @@ exports = {
   onTicketCreateHandler: function(args) {
     // console.log("Hello " + args["data"]["requester"]["name"]);
 
+    // Please, be sure to include 'base-64' dependency in your manifest.json file ("base-64": "0.1.0")
     const freshdeskApi = new freshdeskApiWrapper(
       access.inputDomainName,
-      base64.encode(`${access.inputApiKey}:X`),
+      access.inputApiKey,
       true // console on
     );
 

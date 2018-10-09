@@ -1,5 +1,7 @@
+const base64 = require("base-64");
+
 /**
- * @version 1.4.2
+ * @version 1.4.3
  *
  * General returning object for all API calls of the lib will be:
  * @return {Promise} -- (response) =>
@@ -29,17 +31,17 @@ const freshdeskApiKit = (function() {
   class freshdeskApiKit {
     /**
      * @param domainName -- my.domain.name
-     * @param encodedApiKey -- x56g3vwyen6er
+     * @param apiKey -- x56g3vwyen6er
      * @param logging -- public logs on/off
      */
-    constructor(domainName, encodedApiKey, logging = false) {
+    constructor(domainName, apiKey, logging = false) {
       this.domainName = domainName;
       this.url = `https://${domainName}/api/v2/`;
       this.logging = logging;
 
       setPrivate.call(_access, this, {
         headers: {
-          Authorization: `Basic ${encodedApiKey}`,
+          Authorization: "Basic " + base64.encode(`${apiKey}:X`),
           "Content-Type": "application/json"
         }
       });
