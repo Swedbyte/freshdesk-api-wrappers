@@ -2,7 +2,11 @@
 // running with fdk test environment, launched by "fdk run"
 
 const freshdeskApiWrapper = require("./lib/freshdesk-api-wrappers");
+
 const access = require("./test-access/production-tests-access-module");
+// This is production test access
+// Please, provide your own access: domainName and apiKey
+// e.g. domainName = 'my.domain.name', apiKey = '3n6345674hyebs'
 
 exports = {
   events: [{ event: "onTicketCreate", callback: "onTicketCreateHandler" }],

@@ -9,7 +9,7 @@
     <script type="text/javascript">
 
       // inputDomainName and inputApiKey set as globals in this particular example,
-      // but in real life it probably would be available thought some other connection like db or higher component.
+      // but in real life it probably would be available thought some other connection like db-query or higher component.
       const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey, true);
 
       freshdeskApi.getTicket(2333).then(data => {

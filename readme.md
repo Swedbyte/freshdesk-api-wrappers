@@ -55,14 +55,13 @@ Entry point of the library is `freshdeskApiKit` object variable which represent 
 
 &nbsp;
 
-In `node.js` environment, copy main file `freshdesk-api-wrappers.js` in preferred directory.  
-Include as a module:  
+In `node.js` environment, copy main file `freshdesk-api-wrappers.js` from `node-js-app` edition folder in to preferred directory. Include as a module:  
 ```javascript
 const freshdeskApiKit = require("./freshdesk-api-wrappers.js");
 ```
 &nbsp;
 
-In `browser` environment include file with 'script' tag  
+In `browser` environment include file `freshdesk-api-wrappers.js` from `browser-frontend-app` edition folder with 'script' tag  
 It will set a global variable 'freshdeskApiKit' so you can initiate a new instance of a class.
 ```javascript
 <script src="js/freshdesk-api-wrappers.js"></script>
@@ -73,6 +72,7 @@ Further work will be quite the same for frontend and backend:
 
 ```javascript
 const freshdeskApi = new freshdeskApiKit(inputDomainName, inputApiKey);
+// Input parameters examples 'my.domain.name', 'xb7w45heyry'
 
 freshdeskApi.getTicket(1).then(result => {
   console.log(`result.response `, result.response);
