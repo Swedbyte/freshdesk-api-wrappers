@@ -1,7 +1,7 @@
 
 # Freshdesk API wrappers library
 
-The library contains an API wrappers that are ready to work with Freshdesk platform from different environments:
+This unofficial library contains an API wrappers that are ready to work with Freshdesk (Mint) platform from different environments:
 
 * browser-frontend-app
 * freshdesk-frontend-app
@@ -14,9 +14,13 @@ To find more information about Freshdesk integration possibilities check out [do
 
 ## Usage Overview
 Freshdesk application can be build in different environments.
-One of the main goal of this library is to provide methods for consistent interface across frontend and backend.
+One of the main goal of this library is to provide methods for consistent interface across frontend and backend.  
+
+_Please, be aware that "Freshdesk API wrappers library" uses es6 syntax and should be transpile if legacy browser support needed_
 
 ```javascript
+// Usage example
+
 const freshdeskApi = new freshdeskApiKit(
   inputDomainName, // my.domain.name
   inputApiKey // xb7w45heXry
@@ -99,7 +103,7 @@ Feel free to pull request with working methods updates._
 // Default request headers for all methods are
 // "Content-Type": "application/json"
 // "Authorization" : `Basic ${encodedApiKey}`
-// Provide 'header' parameter with the same name fields to overwrite these.
+// Provide 'header' with the same name of field to overwrite it.
 
 getTicket(ticketId, headers) // all 'headers' and 'body' input params have default empty values
 
@@ -117,7 +121,6 @@ createReplyToTicket(ticketId, body, headers)
 
 createTopicToForum(forumId, body, headers)
 ```
-Please, feel free to look into library methods to check out the JSDoc information.
 
 ### Promise successful result
 ```
@@ -130,6 +133,28 @@ Please, feel free to look into library methods to check out the JSDoc informatio
 // Please, be aware that in case of successful DELETE the 'response' field will be empty string ''
 // which is NOT A VALID JSON object, and will throw error in JSON.parse(response) method.
 
+```
+
+_Please, feel free to look into library methods to check out the JSDoc information._
+
+```javascript
+    // Library fragment
+
+    /**
+     * Tickets / Create a Ticket
+     * @see https://developers.freshdesk.com/api/#create_ticket
+     *
+     * @param body
+     * @param headers
+     * @returns {Promise}
+     */
+    createTicket(body, headers = {}) {
+      const methodTitle = "Create Ticket";
+      const requestMethod = "POST";
+      const finalStatus = 201;
+      const endPointUrl = `${this.url}tickets/`;
+      return this.requestOperator(methodTitle, requestMethod, finalStatus, endPointUrl, headers, body);
+    }
 ```
 
 &nbsp;
